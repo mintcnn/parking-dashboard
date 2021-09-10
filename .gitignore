@@ -1,0 +1,14 @@
+__pycache__/
+virtenv
+
+*.env
+.python-version
+my-readme.md
+.vscode
+.mypy_cache
+*.csv
+.DS_store
+*htmlcov/
+.coverage
+*.xls
+*.xlsx
