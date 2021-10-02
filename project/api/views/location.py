@@ -1,5 +1,6 @@
 from api.serializers import PostParkingSerializer
 
+from api.parking_calculator import edit_location_parking, stat_location
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
@@ -20,16 +21,18 @@ class EditParkingLotView(GenericAPIView):
                 status=status.HTTP_400_BAD_REQUEST)
         validated_data = serializer.validated_data
 
+        if edit_location_parking() and stat_location():
+            return Response(
+                data={
+                    'message': 'edit parking lot success',
+                    'code': status.HTTP_200_OK
+                },
+                status=status.HTTP_200_OK
+            )
         return Response(
             data={
-                'message': 'edit parking lot success',
-                'code': status.HTTP_200_OK
+                'message': 'edit parking lot failed',
+                'code': status.HTTP_400_BAD_REQUEST
             },
-            status=status.HTTP_200_OK
+            status=status.HTTP_400_BAD_REQUEST
         )
-
-    def edit_location_parking(self):
-        return True
-
-    def stat_location(self):
-        return True
