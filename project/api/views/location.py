@@ -9,7 +9,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 class EditParkingLotView(GenericAPIView):
-    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = PostParkingSerializer(data=request.data)

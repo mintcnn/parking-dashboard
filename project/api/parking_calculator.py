@@ -39,10 +39,12 @@ def stat_location(data):
         location_parking = LocationParking.objects.get(location=location)
     except Location.DoesNotExist:
         return False
-    dt = pendulum.now(tz='Asia/Bangkok')
+    print(data['datetime'])
+    dt =  pendulum.parse(str(data['datetime']))
     LocationStat.objects.create(
         location=location,
         day_of_week=day_of_week_mapping[str(dt.day_of_week)],
         available=location_parking.available,
+        datetime = dt
     )
     return True
