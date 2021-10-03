@@ -18,5 +18,5 @@ class LocationParking(models.Model):
 class LocationStat(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     day_of_week = models.CharField(max_length=50, null=False, blank=False)
-    datetime = models.DateTimeField(auto_now=False, auto_now_add=True)
+    datetime = models.DateTimeField(auto_now=False)
     available = models.IntegerField(null=False)
