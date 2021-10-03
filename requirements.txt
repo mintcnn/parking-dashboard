@@ -8,6 +8,7 @@ django-timezone-field==4.0
 djangorestframework==3.12.2
 djangorestframework-simplejwt==4.6.0
 gunicorn==20.1.0
+pendulum==2.1.2
 psycopg2-binary==2.8.6
 python-dotenv==0.15.0
 python-dateutil==2.8.1

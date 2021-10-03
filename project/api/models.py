@@ -11,14 +11,12 @@ class Location(models.Model):
 
 
 class LocationParking(models.Model):
-    location_name = models.CharField(max_length=255, null=False)
-    sub_location = models.CharField(max_length=255, null=False)
-    floor = models.IntegerField()
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     available = models.IntegerField(null=False)
 
 
 class LocationStat(models.Model):
-    sub_location = models.CharField(max_length=255, null=False)
-    floor = models.IntegerField()
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     day_of_week = models.CharField(max_length=50, null=False, blank=False)
-    date = models.DateTimeField(auto_now_add=True)
+    datetime = models.DateTimeField(auto_now=False, auto_now_add=True)
+    available = models.IntegerField(null=False)

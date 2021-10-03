@@ -9,6 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 class EditParkingLotView(GenericAPIView):
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = PostParkingSerializer(data=request.data)
@@ -21,7 +22,7 @@ class EditParkingLotView(GenericAPIView):
                 status=status.HTTP_400_BAD_REQUEST)
         validated_data = serializer.validated_data
 
-        if edit_location_parking(validated_data) and stat_location():
+        if edit_location_parking(validated_data) and stat_location(validated_data):
             return Response(
                 data={
                     'message': 'edit parking lot success',

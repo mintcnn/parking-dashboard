@@ -12,3 +12,4 @@ my-readme.md
 .coverage
 *.xls
 *.xlsx
+env
