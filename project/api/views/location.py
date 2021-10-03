@@ -21,7 +21,7 @@ class EditParkingLotView(GenericAPIView):
                 status=status.HTTP_400_BAD_REQUEST)
         validated_data = serializer.validated_data
 
-        if edit_location_parking() and stat_location():
+        if edit_location_parking(validated_data) and stat_location():
             return Response(
                 data={
                     'message': 'edit parking lot success',

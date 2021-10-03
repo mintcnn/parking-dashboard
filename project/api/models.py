@@ -7,16 +7,17 @@ class Location(models.Model):
     longitude = models.CharField(max_length=50, null=False, blank=False)
     max_capacity = models.IntegerField(null=False, blank=False)
     sub_location = models.CharField(max_length=255, null=False)
-    floor = models.IntegerField()
+    floor = models.CharField(max_length=10, null=False)
 
 
-class Location_parking(models.Model):
+class LocationParking(models.Model):
+    location_name = models.CharField(max_length=255, null=False)
     sub_location = models.CharField(max_length=255, null=False)
     floor = models.IntegerField()
     available = models.IntegerField(null=False)
 
 
-class Location_stat(models.Model):
+class LocationStat(models.Model):
     sub_location = models.CharField(max_length=255, null=False)
     floor = models.IntegerField()
     day_of_week = models.CharField(max_length=50, null=False, blank=False)
