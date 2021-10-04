@@ -1,7 +1,7 @@
 from api.models import Location, LocationParking, LocationStat
 import pendulum
 
-day_of_week_mapping={
+day_of_week_mapping = {
     '0': 'Sun',
     '1': 'Mon',
     '2': 'Tue',
@@ -10,6 +10,7 @@ day_of_week_mapping={
     '5': 'Fri',
     '6': 'Sat'
 }
+
 
 def edit_location_parking(data):
     try:
@@ -28,6 +29,8 @@ def edit_location_parking(data):
             data['parking_change']
         if location_parking.available > location.max_capacity:
             location_parking.available = location.max_capacity
+        if location_parking.available < 0:
+            location_parking.available = 0
         location_parking.save()
 
     return True
@@ -40,11 +43,11 @@ def stat_location(data):
     except Location.DoesNotExist:
         return False
     print(data['datetime'])
-    dt =  pendulum.parse(str(data['datetime']))
+    dt = pendulum.parse(str(data['datetime']))
     LocationStat.objects.create(
         location=location,
         day_of_week=day_of_week_mapping[str(dt.day_of_week)],
         available=location_parking.available,
-        datetime = dt
+        datetime=dt
     )
     return True
